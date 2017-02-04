@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
       # Provision of Linux Gui with ansible
       config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "ansible/install.yaml"
+        ansible.playbook = "ansible/gui/main.yaml"
         ansible.verbose = "v"
       end
     end
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
 
       # Provision of Linux Gui with ansible
       config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "server/install.yaml"
+        ansible.playbook = "ansible/server/main.yaml"
         ansible.verbose = "v"
       end
     end
