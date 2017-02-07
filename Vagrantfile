@@ -24,8 +24,11 @@ Vagrant.configure("2") do |config|
       # Set Video Memory to 128MB
       v.customize ["modifyvm", :id, "--vram", "128"]
 
+      # Install latest Ansible on Debian Jessie 8
+      # with shell provisioner
+      config.vm.provision "shell", path: "shell/install_latest_ansible.sh"
       # Provision of Linux Gui with ansible
-      config.vm.provision "ansible" do |ansible|
+      config.vm.provision "ansible_local" do |ansible|
         ansible.playbook = "ansible/gui/main.yaml"
         ansible.verbose = "v"
       end
