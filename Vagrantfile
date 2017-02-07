@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
 
   # User debian/contrig-jessie64 Template
   config.vm.box = "debian/contrib-jessie64"
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
   config.vm.define "gui" do |gui|
     config.vm.provider "virtualbox" do |v|
@@ -23,7 +24,6 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--accelerate3d",  "on"]
       # Set Video Memory to 128MB
       v.customize ["modifyvm", :id, "--vram", "128"]
-
       # Install latest Ansible on Debian Jessie 8
       # with shell provisioner
       config.vm.provision "shell", path: "shell/install_latest_ansible.sh"
