@@ -1,18 +1,4 @@
 ---
-#vars:
-#  packages:
-#    - cinnamon
-#    - lightdm
-#    - virtualbox-guest-x11
-#    - htop
-#    - iftop
-#    - iotop
-#    - tcpdump
-#    - git
-#    - zsh
-#    - vim
-#    - google-chrome-stable
-#
 - name: update and upgrade distribution
   apt:
     update_cache: yes
@@ -39,6 +25,6 @@
     - tcpdump
     - git
     - zsh
-    - vim
+    - vim-nox
     - google-chrome-stable
 
