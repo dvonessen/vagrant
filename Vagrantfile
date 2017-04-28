@@ -1,13 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-suffix='dev01'
-fqdn='local'
+suffix="dev01"
+fqdn="local"
 
 Vagrant.configure("2") do |config|
 
   # User debian/contrig-jessie64 Template
-  config.vm.box = "debian/contrib-jessie64"
+  config.vm.box = "ubuntu/zesty64"
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
   config.vm.define "gui" do |gui|
@@ -25,12 +25,9 @@ Vagrant.configure("2") do |config|
       # Set Video Memory to 128MB
       v.customize ["modifyvm", :id, "--vram", "128"]
 
-      # Install latest Ansible on Debian Jessie 8
-      # with shell provisioner
-      config.vm.provision "shell", path: "shell/install_latest_ansible.sh"
       # Provision of Linux Gui with ansible
       config.vm.provision "ansible_local" do |ansible|
-        ansible.playbook = "ansible/gui/main.yaml"
+        ansible.playbook = "ansible/main.yaml"
         ansible.verbose = "v"
       end
     end
