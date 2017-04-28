@@ -5,13 +5,7 @@
   tasks:
 
     - name: "Include installation packages"
-    - include: packages.yaml
-
-    - name: configure keyboard layout
-      replace:
-        dest: /etc/default/keyboard
-        regexp: '^XKBLAYOUT=".*"'
-        replace: 'XKBLAYOUT="de"'
+      include: packages.yaml
 
     - name: start lightdm service
       service:
@@ -19,4 +13,5 @@
         state: restarted
         name: lightdm
 
-    - include: deploy_dots.yaml
+    - name: "Deploy Dots directory for vagrant user"
+      include: deploy_dots.yaml

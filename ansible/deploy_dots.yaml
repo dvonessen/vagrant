@@ -5,4 +5,4 @@
     dest: "/home/{{ ansible_user }}/dots"
 
 - name: "install dots in /home/{{ ansible_user }}"
-  shell: "/home/{{ ansible_usere }}/dots/publish.sh -i"
+    shell: "/home/{{ ansible_usere }}/dots/publish.sh -i"
