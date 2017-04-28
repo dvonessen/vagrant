@@ -1,8 +1,0 @@
----
-- name: clone dots repo
-  git:
-    repo: https://github.com/dthielking/dots.git
-    dest: /home/{{ username }}/dots
-
-- name: "install dots in /home/{{ username }}"
-  shell: /home/{{ username }}/dots/publish.sh -i

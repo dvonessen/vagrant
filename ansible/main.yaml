@@ -1,12 +1,10 @@
 ---
-- hosts: all
+- hosts: gui
   become: true
-
-  vars:
-    username: thielking
 
   tasks:
 
+    - name: "Include installation packages"
     - include: packages.yaml
 
     - name: configure keyboard layout
@@ -15,17 +13,10 @@
         regexp: '^XKBLAYOUT=".*"'
         replace: 'XKBLAYOUT="de"'
 
-    - name: "configure autologin for {{ username }}"
-      template:
-        src: templates/09_autologin.conf.j2
-        dest: /usr/share/lightdm/lightdm.conf.d/09_autologin.conf
-        mode: 0644
-
     - name: start lightdm service
       service:
         enabled: yes
         state: restarted
         name: lightdm
 
-    - include: create_users.yaml
     - include: deploy_dots.yaml
