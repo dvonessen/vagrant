@@ -7,7 +7,7 @@ fqdn="local"
 Vagrant.configure("2") do |config|
 
   # User debian/contrig-jessie64 Template
-  config.vm.box = "ubuntu/zesty64"
+  config.vm.box = "ubuntu/yakkety64"
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
   config.vm.define "gui" do |gui|
@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
       # Provision of Linux Gui with ansible
       config.vm.provision "ansible_local" do |ansible|
         ansible.playbook = "ansible/main.yaml"
-        ansible.verbose = "v"
+        ansible.verbose = false
       end
     end
   end
