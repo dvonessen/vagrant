@@ -4,20 +4,12 @@
     update_cache: yes
     upgrade: dist
 
-#- name: get google chrome repository running
-#  apt_repository:
-#    filename: google-chrome
-#    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
-#- name: installing google-chrome public key
-#  apt_key:
-#    url:  https://dl.google.com/linux/linux_signing_key.pub
-#    state: present
-
 - name: install sufficient packages
-  apt: name={{ item }} state=latest update_cache=yes
+  apt:
+    name: "{{ item }}"
+    state: present
   with_items:
     - i3
-    - xdm
     - htop
     - iftop
     - iotop
@@ -25,3 +17,6 @@
     - git
     - zsh
     - vim-nox
+    - xinit
+    - xdm
+  register: apt_install

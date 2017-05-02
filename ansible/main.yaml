@@ -1,17 +1,19 @@
 ---
 - hosts: gui
-  become: true
 
   tasks:
 
-    - name: "Include installation packages"
-      include: packages.yaml
+  - name: "Include installation packages"
+    include: packages.yaml
+    become: true
 
-    - name: start lightdm service
-      service:
-        enabled: yes
-        state: restarted
-        name: lightdm
+  - name: Set ubuntu user password
+    user:
+      name: ubuntu
+      password: "$6$rUpkSIsg48$mZwb5MqFnVNjKnIK8qdWw.2JTDet/baHllgf8NjB/z.OGfyfnNc3/O/TKAipTCDuhz1am6bKEfh.XWF8fWU8M."
+      update_password: always
+      shell: /usr/bin/zsh
+    become: true
 
-    - name: "Deploy Dots directory for vagrant user"
-      include: deploy_dots.yaml
+  - name: "Deploy Dots directory for vagrant user"
+    include: deploy_dots.yaml

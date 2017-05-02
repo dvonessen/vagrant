@@ -2,7 +2,8 @@
 - name: clone dots repo
   git:
     repo: https://github.com/dthielking/dots.git
-    dest: "/home/{{ ansible_user }}/dots"
+    dest: /home/ubuntu/dots
+    version: HEAD
 
-- name: "install dots in /home/{{ ansible_user }}"
-    shell: "/home/{{ ansible_usere }}/dots/publish.sh -i"
+- name: install dots
+  command: /bin/bash -c /home/ubuntu/dots/publish.sh -i
